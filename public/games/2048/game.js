@@ -152,23 +152,27 @@ document.querySelectorAll('[data-direction]').forEach((button) => {
   button.addEventListener('click', () => move(button.dataset.direction));
 });
 
-let touchStart = null;
-boardElement.addEventListener('touchstart', (event) => {
-  const touch = event.changedTouches[0];
-  touchStart = { x: touch.clientX, y: touch.clientY };
-}, { passive: true });
+let pointerStart = null;
+boardElement.addEventListener('pointerdown', (event) => {
+  if (event.pointerType === 'mouse' || !event.isPrimary) return;
+  pointerStart = { x: event.clientX, y: event.clientY, id: event.pointerId };
+  boardElement.setPointerCapture(event.pointerId);
+});
 
-boardElement.addEventListener('touchend', (event) => {
-  if (!touchStart) return;
-  const touch = event.changedTouches[0];
-  const deltaX = touch.clientX - touchStart.x;
-  const deltaY = touch.clientY - touchStart.y;
-  touchStart = null;
+boardElement.addEventListener('pointerup', (event) => {
+  if (!pointerStart || pointerStart.id !== event.pointerId) return;
+  const deltaX = event.clientX - pointerStart.x;
+  const deltaY = event.clientY - pointerStart.y;
+  pointerStart = null;
   if (Math.max(Math.abs(deltaX), Math.abs(deltaY)) < 24) return;
   move(Math.abs(deltaX) > Math.abs(deltaY)
     ? deltaX > 0 ? 'right' : 'left'
     : deltaY > 0 ? 'down' : 'up');
-}, { passive: true });
+});
+
+boardElement.addEventListener('pointercancel', () => {
+  pointerStart = null;
+});
 
 newGameButton.addEventListener('click', resetGame);
 resetGame();

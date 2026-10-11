@@ -7,7 +7,12 @@ const startButton = document.querySelector('#pause-game');
 const newGameButton = document.querySelector('#new-game');
 
 const gridSize = 20;
-const cellSize = canvas.width / gridSize;
+const boardSize = 400;
+const renderScale = Math.min(window.devicePixelRatio || 1, 2);
+canvas.width = boardSize * renderScale;
+canvas.height = boardSize * renderScale;
+context.scale(renderScale, renderScale);
+const cellSize = boardSize / gridSize;
 const speedMs = 115;
 const bestKey = 'snake-best-score';
 const directions = {
@@ -28,9 +33,9 @@ let gameTimer = null;
 let swipeStart = null;
 
 function draw() {
-  context.clearRect(0, 0, canvas.width, canvas.height);
+  context.clearRect(0, 0, boardSize, boardSize);
   context.fillStyle = '#101916';
-  context.fillRect(0, 0, canvas.width, canvas.height);
+  context.fillRect(0, 0, boardSize, boardSize);
 
   context.strokeStyle = 'rgba(255, 255, 255, 0.035)';
   context.lineWidth = 1;
@@ -38,9 +43,9 @@ function draw() {
     const offset = coordinate * cellSize;
     context.beginPath();
     context.moveTo(offset, 0);
-    context.lineTo(offset, canvas.height);
+    context.lineTo(offset, boardSize);
     context.moveTo(0, offset);
-    context.lineTo(canvas.width, offset);
+    context.lineTo(boardSize, offset);
     context.stroke();
   }
 

@@ -2,12 +2,19 @@
 <html lang="fr">
   <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
     <meta name="theme-color" content="#edf2e6">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link rel="manifest" href="./manifest.webmanifest">
+    <link rel="icon" href="./assets/icons/icon.svg" type="image/svg+xml">
+    <link rel="apple-touch-icon" href="./assets/icons/icon-192.png">
     <title>Jeux de poche · Bibliothèque</title>
     <link rel="stylesheet" href="./assets/css/dashboard.css">
+    <link rel="stylesheet" href="./assets/css/mobile.css">
     <script src="./assets/js/local-stats.js" defer></script>
     <script src="./assets/js/dashboard.js" defer></script>
+    <script src="./assets/js/pwa.js" defer></script>
   </head>
   <body class="hub-page">
     <main class="hub-shell">
@@ -17,6 +24,7 @@
           <span>JEUX DE POCHE<small>LA PETITE ARCADE</small></span>
         </a>
         <div class="header-note"><span></span> TA PAUSE, TON JEU</div>
+        <button class="install-button" id="install-app" type="button" hidden>Installer l’app</button>
       </header>
 
       <section class="hub-intro" aria-labelledby="hub-title">
@@ -24,6 +32,7 @@
           <p class="hub-eyebrow">LA BIBLIOTHÈQUE <span>·</span> ÉDITION 01</p>
           <h1 id="hub-title">On joue à <em>quoi&nbsp;?</em></h1>
           <p class="hub-subtitle">Des jeux simples, une partie à la fois.</p>
+          <p class="install-hint">Ajoute le site à ton écran d’accueil pour jouer comme dans une app, même hors ligne.</p>
         </div>
           <p class="library-count"><strong id="available-count">02</strong><span id="available-label">JEUX DUO<br>DISPONIBLES</span></p>
       </section>
