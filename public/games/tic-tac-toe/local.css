@@ -1,0 +1,101 @@
+[hidden] { display: none !important; }
+
+.game-panel { width: 100%; }
+
+.local-setup-panel,
+.gameplay-panel,
+.game-record {
+  width: 100%;
+}
+
+.local-setup-panel {
+  display: grid;
+  gap: 10px;
+}
+
+.local-setup-panel h2 {
+  margin: 0 0 5px;
+  font-size: 21px;
+}
+
+.field-label {
+  color: var(--muted);
+  font: 10px var(--mono);
+  letter-spacing: 1.2px;
+}
+
+.lobby-input {
+  width: 100%;
+  min-height: 44px;
+  padding: 10px 12px;
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  background: #111a1880;
+  color: var(--ink);
+  font: 14px 'Manrope', 'Segoe UI', sans-serif;
+}
+
+.lobby-input:focus-visible {
+  outline: 2px solid var(--lime);
+  outline-offset: 2px;
+}
+
+.primary-action {
+  display: flex;
+  min-height: 44px;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 14px;
+  border: 1px solid var(--lime);
+  border-radius: 4px;
+  background: var(--lime);
+  color: #17221c;
+  cursor: pointer;
+  font: 700 13px 'Manrope', 'Segoe UI', sans-serif;
+}
+
+.primary-action span { font-size: 18px; }
+.primary-action:hover { background: #e3f98c; }
+
+.back-button {
+  align-self: center;
+  margin-top: 7px;
+  padding: 7px 9px;
+  border: 0;
+  border-radius: 3px;
+  background: transparent;
+  color: var(--muted);
+  cursor: pointer;
+  font-size: 11px;
+}
+
+.back-button:hover { color: var(--ink); }
+.gameplay-panel { display: flex; flex-direction: column; align-items: center; }
+.gameplay-panel .game-info { width: 100%; margin-bottom: 18px; }
+.game-status { overflow-wrap: anywhere; }
+.player-legend .player { display: inline-flex; align-items: center; gap: 4px; }
+.reset-button { align-self: center; }
+
+.game-record {
+  margin-top: 24px;
+  padding-top: 18px;
+  border-top: 1px solid var(--line);
+}
+
+.record-heading { display: flex; align-items: baseline; justify-content: space-between; gap: 10px; }
+.record-heading h2 { margin: 0; font-size: 14px; }
+.record-heading span { padding: 5px; border: 1px solid var(--line); border-radius: 3px; color: var(--muted); font: 8px var(--mono); }
+.record-totals { display: flex; gap: 24px; margin: 14px 0; }
+.record-totals p { display: flex; align-items: center; gap: 7px; margin: 0; color: var(--muted); font: 9px var(--mono); }
+.record-totals strong { color: var(--ink); font-size: 14px; }
+.match-leaderboard { display: grid; gap: 1px; margin: 0; padding: 0; list-style: none; }
+.match-leaderboard li { display: flex; justify-content: space-between; gap: 12px; padding: 7px 0; border-top: 1px solid #ffffff10; font-size: 11px; }
+.match-leaderboard li span { color: var(--muted); font: 9px var(--mono); }
+
+@media (max-width: 720px) {
+  .record-heading { align-items: flex-start; flex-direction: column; }
+}
+
+@media (max-width: 420px) {
+  .record-totals { justify-content: space-between; gap: 8px; }
+}

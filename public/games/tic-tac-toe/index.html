@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#111a18">
+    <title>Tic-tac-toe · Jeux de poche</title>
+    <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="./local.css">
+    <script src="../../assets/js/local-stats.js" defer></script>
+    <script src="./game.js" defer></script>
+  </head>
+  <body>
+    <main class="game-shell">
+      <header class="topbar">
+        <a class="wordmark" href="../../" aria-label="Retour à la bibliothèque de jeux">
+          <span class="wordmark-mark" aria-hidden="true">←</span>
+          <span>TOUS LES JEUX <i>· BIBLIOTHÈQUE</i></span>
+        </a>
+        <span class="edition">LE CLASSIQUE · 01</span>
+      </header>
+
+      <section class="game" aria-labelledby="game-title">
+        <div class="intro">
+          <p class="eyebrow"><span></span> DUO · UN ÉCRAN</p>
+          <h1 id="game-title">Tic-tac-<em>toe.</em></h1>
+          <p class="subtitle">Un appareil partagé, jouez chacun votre tour.</p>
+        </div>
+
+        <div class="game-panel">
+          <section class="local-setup-panel" id="local-setup-panel" aria-label="Noms des joueurs">
+            <p class="turn-label">DUO · UN ÉCRAN</p>
+            <h2>Qui joue&nbsp;?</h2>
+            <label class="field-label" for="local-player-x">JOUEUR X</label>
+            <input class="lobby-input" id="local-player-x" maxlength="18" autocomplete="off" value="Joueur 1">
+            <label class="field-label" for="local-player-o">JOUEUR O</label>
+            <input class="lobby-input" id="local-player-o" maxlength="18" autocomplete="off" value="Joueur 2">
+            <button class="primary-action" id="start-local-game" type="button">Commencer la partie <span aria-hidden="true">→</span></button>
+          </section>
+
+          <section class="gameplay-panel" id="gameplay-panel" hidden aria-label="Partie en cours">
+            <div class="game-info">
+              <p class="turn-label">MANCHE <span id="round-number">01</span></p>
+              <p class="game-status" id="game-status" aria-live="polite">Au tour de Joueur 1</p>
+              <div class="player-legend" aria-label="Joueurs">
+                <span class="player is-active" data-player="X"><b>X</b> <span id="name-x">JOUEUR 1</span></span>
+                <span class="player" data-player="O"><b>O</b> <span id="name-o">JOUEUR 2</span></span>
+              </div>
+            </div>
+
+            <div class="board" role="group" aria-label="Grille de tic-tac-toe">
+              <button class="cell" type="button" data-cell="0" aria-label="Case 1, vide"></button>
+              <button class="cell" type="button" data-cell="1" aria-label="Case 2, vide"></button>
+              <button class="cell" type="button" data-cell="2" aria-label="Case 3, vide"></button>
+              <button class="cell" type="button" data-cell="3" aria-label="Case 4, vide"></button>
+              <button class="cell" type="button" data-cell="4" aria-label="Case 5, vide"></button>
+              <button class="cell" type="button" data-cell="5" aria-label="Case 6, vide"></button>
+              <button class="cell" type="button" data-cell="6" aria-label="Case 7, vide"></button>
+              <button class="cell" type="button" data-cell="7" aria-label="Case 8, vide"></button>
+              <button class="cell" type="button" data-cell="8" aria-label="Case 9, vide"></button>
+            </div>
+
+            <button class="reset-button" id="new-round" type="button" hidden><span aria-hidden="true">↻</span> Rejouer la manche</button>
+            <button class="back-button" id="change-players" type="button">← Changer les joueurs</button>
+          </section>
+
+          <section class="game-record" aria-labelledby="record-title">
+            <div class="record-heading"><h2 id="record-title">Scores et parties</h2><span>ENREGISTRÉS SUR CET APPAREIL</span></div>
+            <div class="record-totals"><p>PARTIES TERMINÉES <strong id="games-completed">0</strong></p><p>ÉGALITÉS <strong id="draw-count">0</strong></p></div>
+            <ol class="match-leaderboard" id="match-leaderboard"><li>Les résultats apparaîtront après la première partie.</li></ol>
+          </section>
+        </div>
+      </section>
+
+      <footer class="footer">
+        <span>FAIT POUR LES PETITES PAUSES</span>
+        <span>01 <i>/</i> 05 <b>JEUX</b></span>
+      </footer>
+    </main>
+  </body>
+</html>

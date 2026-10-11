@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#111a18">
+    <title>Memory · Jeux de poche</title>
+    <link rel="stylesheet" href="./style.css">
+    <script src="./game.js" defer></script>
+  </head>
+  <body>
+    <main class="game-shell">
+      <header class="topbar">
+        <a class="wordmark" href="../../" aria-label="Retour à la bibliothèque de jeux">
+          <span class="wordmark-mark" aria-hidden="true">←</span>
+          <span>TOUS LES JEUX <i>· BIBLIOTHÈQUE</i></span>
+        </a>
+        <span class="edition">LE CLASSIQUE · 02</span>
+      </header>
+
+      <section class="game" aria-labelledby="game-title">
+        <div class="intro">
+          <p class="eyebrow"><span></span> SOLO · MÉMOIRE</p>
+          <h1 id="game-title">Memory.</h1>
+          <p class="subtitle">Retourne les cartes, trouve les paires et gagne en peu de coups.</p>
+        </div>
+
+        <div class="game-panel">
+          <div class="game-header">
+            <div>
+              <p class="turn-label">TABLE DE JEU</p>
+              <h2>Retrouve les paires</h2>
+            </div>
+            <div class="game-actions">
+              <button class="secondary-button" id="sound-toggle" type="button" aria-pressed="true">Son activé</button>
+              <button class="secondary-button" id="new-game" type="button">Nouvelle partie</button>
+            </div>
+          </div>
+
+          <div class="status-bar" aria-label="Statistiques de la partie">
+            <div class="stat-box">
+              <span>Coups</span>
+              <strong id="move-count">0</strong>
+            </div>
+            <div class="stat-box">
+              <span>Temps</span>
+              <strong id="timer">00:00</strong>
+            </div>
+            <div class="stat-box">
+              <span>Paires</span>
+              <strong id="pair-count">0/8</strong>
+            </div>
+            <div class="stat-box best-score">
+              <span>Meilleur score</span>
+              <strong id="best-score">—</strong>
+              <small id="best-time"></small>
+            </div>
+          </div>
+
+          <div class="memory-board" id="memory-board" aria-label="Plateau de memory"></div>
+
+          <p class="game-status" id="game-status" aria-live="polite">Clique sur une carte pour commencer.</p>
+        </div>
+      </section>
+
+      <footer class="footer">
+        <span>FAIT POUR LES PETITES PAUSES</span>
+        <span>02 <i>/</i> 05 <b>JEUX</b></span>
+      </footer>
+    </main>
+  </body>
+</html>

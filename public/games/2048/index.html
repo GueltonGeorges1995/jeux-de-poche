@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#111a18">
+    <title>2048 · Jeux de poche</title>
+    <link rel="stylesheet" href="./style.css">
+    <script src="./game.js" defer></script>
+  </head>
+  <body>
+    <main class="game-shell">
+      <header class="topbar">
+        <a class="wordmark" href="../../" aria-label="Retour à la bibliothèque de jeux">
+          <span class="wordmark-mark" aria-hidden="true">←</span>
+          <span>TOUS LES JEUX <i>· BIBLIOTHÈQUE</i></span>
+        </a>
+        <span class="edition">LE CASSE-TÊTE · 05</span>
+      </header>
+
+      <section class="game" aria-labelledby="game-title">
+        <div class="intro">
+          <p class="eyebrow"><span></span> SOLO · RÉFLEXION</p>
+          <h1 id="game-title">2048.</h1>
+          <p class="subtitle">Fais glisser les tuiles. Deux nombres identiques fusionnent en un seul.</p>
+          <p class="keyboard-hint">FLÈCHES OU ZQSD POUR JOUER</p>
+        </div>
+
+        <div class="game-panel">
+          <div class="game-header">
+            <div>
+              <p class="turn-label">TABLE DE JEU</p>
+              <h2>Atteins 2048</h2>
+            </div>
+            <div class="game-actions">
+              <div class="score-box"><span>Score</span><strong id="score">0</strong></div>
+              <div class="score-box"><span>Record</span><strong id="best-score">0</strong></div>
+              <button class="secondary-button" id="new-game" type="button">Nouvelle partie</button>
+            </div>
+          </div>
+
+          <div class="board-wrap">
+            <div class="game-board" id="game-board" role="grid" aria-label="Grille de 2048"></div>
+          </div>
+
+          <div class="direction-pad" aria-label="Commandes de déplacement">
+            <button type="button" data-direction="up" aria-label="Déplacer vers le haut">↑</button>
+            <button type="button" data-direction="left" aria-label="Déplacer vers la gauche">←</button>
+            <button type="button" data-direction="down" aria-label="Déplacer vers le bas">↓</button>
+            <button type="button" data-direction="right" aria-label="Déplacer vers la droite">→</button>
+          </div>
+          <p class="game-status" id="game-status" aria-live="polite">Fusionne les tuiles pour atteindre 2048.</p>
+        </div>
+      </section>
+
+      <footer class="footer">
+        <span>FAIT POUR LES PETITES PAUSES</span>
+        <span>05 <i>/</i> 05 <b>JEUX</b></span>
+      </footer>
+    </main>
+  </body>
+</html>

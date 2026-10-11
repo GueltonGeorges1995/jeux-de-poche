@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#111a18">
+    <title>Snake · Jeux de poche</title>
+    <link rel="stylesheet" href="./style.css">
+    <script src="./game.js" defer></script>
+  </head>
+  <body>
+    <main class="game-shell">
+      <header class="topbar">
+        <a class="wordmark" href="../../" aria-label="Retour à la bibliothèque de jeux">
+          <span class="wordmark-mark" aria-hidden="true">←</span>
+          <span>TOUS LES JEUX <i>· BIBLIOTHÈQUE</i></span>
+        </a>
+        <span class="edition">LE CLASSIQUE · 04</span>
+      </header>
+
+      <section class="game" aria-labelledby="game-title">
+        <div class="intro">
+          <p class="eyebrow"><span></span> SOLO · ARCADE</p>
+          <h1 id="game-title">Snake.</h1>
+          <p class="subtitle">Attrape les fruits, grandis et évite de te mordre la queue.</p>
+          <p class="keyboard-hint">FLÈCHES, ZQSD OU BALAYAGE SUR LE TERRAIN</p>
+        </div>
+
+        <div class="game-panel">
+          <div class="game-header">
+            <div>
+              <p class="turn-label">TABLE DE JEU</p>
+              <h2>Garde le cap</h2>
+            </div>
+            <div class="game-actions">
+              <button class="secondary-button" id="pause-game" type="button">Démarrer</button>
+              <button class="secondary-button" id="new-game" type="button">Recommencer</button>
+            </div>
+          </div>
+
+          <div class="status-bar" aria-label="Statistiques de la partie">
+            <div class="stat-box"><span>Score</span><strong id="score">0</strong></div>
+            <div class="stat-box"><span>Record</span><strong id="best-score">0</strong></div>
+          </div>
+
+          <canvas id="snake-board" width="400" height="400" role="img" aria-label="Terrain de Snake, utilise les flèches du clavier pour diriger"></canvas>
+
+          <div class="direction-controls">
+            <p class="controls-label">COMMANDES TACTILES</p>
+            <div class="direction-pad" aria-label="Commandes de direction">
+              <button type="button" data-direction="up" aria-label="Aller vers le haut">↑</button>
+              <button type="button" data-direction="left" aria-label="Aller vers la gauche">←</button>
+              <button type="button" data-direction="down" aria-label="Aller vers le bas">↓</button>
+              <button type="button" data-direction="right" aria-label="Aller vers la droite">→</button>
+            </div>
+          </div>
+          <p class="game-status" id="game-status" aria-live="polite">Appuie sur Démarrer, puis balaie le terrain ou utilise les flèches.</p>
+        </div>
+      </section>
+
+      <footer class="footer">
+        <span>FAIT POUR LES PETITES PAUSES</span>
+        <span>04 <i>/</i> 05 <b>JEUX</b></span>
+      </footer>
+    </main>
+  </body>
+</html>

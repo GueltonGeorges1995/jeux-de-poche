@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#edf2e6">
+    <title>Jeux de poche · Bibliothèque</title>
+    <link rel="stylesheet" href="./assets/css/dashboard.css">
+    <script src="./assets/js/local-stats.js" defer></script>
+    <script src="./assets/js/dashboard.js" defer></script>
+  </head>
+  <body class="hub-page">
+    <main class="hub-shell">
+      <header class="hub-header">
+        <a class="hub-brand" href="./" aria-label="Jeux de poche, accueil">
+          <span class="hub-brand-mark" aria-hidden="true">jp</span>
+          <span>JEUX DE POCHE<small>LA PETITE ARCADE</small></span>
+        </a>
+        <div class="header-note"><span></span> TA PAUSE, TON JEU</div>
+      </header>
+
+      <section class="hub-intro" aria-labelledby="hub-title">
+        <div>
+          <p class="hub-eyebrow">LA BIBLIOTHÈQUE <span>·</span> ÉDITION 01</p>
+          <h1 id="hub-title">On joue à <em>quoi&nbsp;?</em></h1>
+          <p class="hub-subtitle">Des jeux simples, une partie à la fois.</p>
+        </div>
+          <p class="library-count"><strong id="available-count">02</strong><span id="available-label">JEUX DUO<br>DISPONIBLES</span></p>
+      </section>
+
+      <section class="catalog" aria-labelledby="catalog-title">
+        <div class="mode-switch" role="group" aria-label="Choisir le mode de jeu">
+          <button class="mode-option" type="button" data-mode-option="solo" aria-pressed="false"><span>01</span> Solo</button>
+          <button class="mode-option is-selected" type="button" data-mode-option="duo" aria-pressed="true"><span>02</span> Duo</button>
+        </div>
+        <div class="catalog-heading">
+          <div><h2 id="catalog-title">Jeux en duo</h2><p id="mode-description">Jouez à deux sur le même écran.</p></div>
+          <span>LE CATALOGUE</span>
+        </div>
+
+        <div class="game-grid mode-duo" id="game-grid">
+          <a class="game-card featured-card" href="./games/tic-tac-toe/" data-game-mode="duo" data-available="true">
+            <div class="featured-art" aria-hidden="true">
+              <span class="art-stamp">01</span>
+              <div class="mini-board">
+                <span>X</span><span></span><span>O</span>
+                <span></span><span>X</span><span></span>
+                <span>O</span><span></span><span>X</span>
+              </div>
+              <span class="art-caption">TROIS À LA SUITE</span>
+            </div>
+            <div class="card-copy">
+              <div class="card-title-row"><h3>Tic-tac-toe</h3><span class="play-arrow" aria-hidden="true">↗</span></div>
+              <p>Le grand classique en duel. Aligne tes trois signes avant l’autre.</p>
+              <div class="card-meta"><span>2 JOUEURS</span><span>~ 2 MIN</span><strong>LANCER UNE PARTIE <b aria-hidden="true">→</b></strong></div>
+            </div>
+          </a>
+
+          <a class="game-card featured-card" href="./games/connect-four/" data-game-mode="duo" data-available="true">
+            <div class="featured-art" aria-hidden="true">
+              <span class="art-stamp">02</span>
+              <div class="mini-board connect-four-mini" aria-hidden="true">
+                <span class="dot dot-x">●</span><span class="dot dot-o">○</span><span class="dot dot-x">●</span><span class="dot dot-o">○</span>
+                <span class="dot dot-o">○</span><span class="dot dot-x">●</span><span class="dot dot-o">○</span>
+                <span class="dot dot-x">●</span><span class="dot dot-o">○</span><span class="dot dot-x">●</span><span class="dot dot-o">○</span><span class="dot dot-x">●</span>
+                <span class="dot dot-o">○</span><span class="dot dot-x">●</span><span class="dot dot-o">○</span><span class="dot dot-x">●</span><span class="dot dot-o">○</span><span class="dot dot-x">●</span>
+              </div>
+              <span class="art-caption">FOUR À LA FILE</span>
+            </div>
+            <div class="card-copy">
+              <div class="card-title-row"><h3>Puissance 4</h3><span class="play-arrow" aria-hidden="true">↗</span></div>
+              <p>Gagne en empilant les jetons et en alignant quatre pions.</p>
+              <div class="card-meta"><span>2 JOUEURS</span><span>~ 3 MIN</span><strong>LANCER UNE PARTIE <b aria-hidden="true">→</b></strong></div>
+            </div>
+          </a>
+
+          <a class="game-card featured-card" href="./games/memory/" data-game-mode="solo" data-available="true">
+            <div class="featured-art" aria-hidden="true">
+              <span class="art-stamp">03</span>
+              <div class="mini-board memory-mini" aria-hidden="true">
+                <span>🍋</span><span>🍉</span><span>🍇</span>
+                <span>🍓</span><span>🍒</span><span>🍍</span>
+                <span>🍊</span><span>🍏</span><span>❔</span>
+              </div>
+              <span class="art-caption">MEMOIRE</span>
+            </div>
+            <div class="card-copy">
+              <div class="card-title-row"><h3>Memory</h3><span class="play-arrow" aria-hidden="true">↗</span></div>
+              <p>Retourne les cartes, retrouve les paires et hausse ton score.</p>
+              <div class="card-meta"><span>1 JOUEUR</span><span>~ 5 MIN</span><strong>JOUER <b aria-hidden="true">→</b></strong></div>
+            </div>
+          </a>
+
+          <a class="game-card featured-card" href="./games/snake/" data-game-mode="solo" data-available="true">
+            <div class="featured-art snake-featured-art" aria-hidden="true">
+              <span class="art-stamp">04</span>
+              <div class="snake-mini"><i></i><i></i><i></i><i></i><i></i></div>
+              <span class="snake-mini-food"></span>
+              <span class="art-caption">GARDE LE CAP</span>
+            </div>
+            <div class="card-copy">
+              <div class="card-title-row"><h3>Snake</h3><span class="play-arrow" aria-hidden="true">↗</span></div>
+              <p>Attrape les fruits, grandis et évite de te mordre la queue.</p>
+              <div class="card-meta"><span>1 JOUEUR</span><span>~ 3 MIN</span><strong>JOUER <b aria-hidden="true">→</b></strong></div>
+            </div>
+          </a>
+
+          <a class="game-card featured-card" href="./games/2048/" data-game-mode="solo" data-available="true">
+            <div class="featured-art tiles-featured-art" aria-hidden="true">
+              <span class="art-stamp">05</span>
+              <div class="tiles-mini"><span>2</span><span>4</span><span>8</span><span>16</span></div>
+              <span class="art-caption">FUSIONNE LES TUILES</span>
+            </div>
+            <div class="card-copy">
+              <div class="card-title-row"><h3>2048</h3><span class="play-arrow" aria-hidden="true">↗</span></div>
+              <p>Fais glisser les nombres et fusionne-les jusqu’à 2048.</p>
+              <div class="card-meta"><span>1 JOUEUR</span><span>~ 5 MIN</span><strong>JOUER <b aria-hidden="true">→</b></strong></div>
+            </div>
+          </a>
+        </div>
+      </section>
+
+      <section class="score-section" aria-labelledby="score-title">
+        <div class="score-heading"><div><p class="hub-eyebrow">LE COMPTEUR</p><h2 id="score-title">Les scores du coin</h2></div><span>ENREGISTRÉS SUR CET APPAREIL</span></div>
+        <div class="score-content">
+          <div class="score-totals">
+            <div><strong id="games-played">0</strong><span>PARTIES JOUÉES</span></div>
+            <div><strong id="draw-games">0</strong><span>ÉGALITÉS</span></div>
+            <p>Les résultats se mettent à jour après chaque partie terminée.</p>
+          </div>
+          <ol class="leaderboard" id="leaderboard" aria-live="polite"><li class="empty-score">Les premiers scores apparaîtront ici.</li></ol>
+        </div>
+      </section>
+
+      <footer class="hub-footer"><span>FAIT POUR LES PETITES PAUSES</span><span>01 <i>/</i> 05 <b>JEUX</b></span></footer>
+    </main>
+  </body>
+</html>
