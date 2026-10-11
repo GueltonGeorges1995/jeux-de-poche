@@ -343,9 +343,7 @@ h1 em { color: var(--lime); font-style: normal; }
 }
 
 @media (max-width: 520px) {
-  .status-bar {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
+  .status-bar { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
 
 @media (prefers-reduced-motion: reduce) {

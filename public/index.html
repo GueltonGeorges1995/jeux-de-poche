@@ -32,16 +32,16 @@
           <p class="hub-eyebrow">LA BIBLIOTHÈQUE <span>·</span> ÉDITION 01</p>
           <h1 id="hub-title">On joue à <em>quoi&nbsp;?</em></h1>
           <p class="hub-subtitle">Des jeux simples, une partie à la fois.</p>
-          <p class="install-hint">Ajoute le site à ton écran d’accueil pour jouer comme dans une app, même hors ligne.</p>
         </div>
-          <p class="library-count"><strong id="available-count">02</strong><span id="available-label">JEUX DUO<br>DISPONIBLES</span></p>
+        <p class="library-count"><strong id="available-count">02</strong><span id="available-label">JEUX DUO<br>DISPONIBLES</span></p>
       </section>
 
       <section class="catalog" aria-labelledby="catalog-title">
-        <div class="mode-switch" role="group" aria-label="Choisir le mode de jeu">
+        <nav class="mode-switch" aria-label="Modes de jeu">
           <button class="mode-option" type="button" data-mode-option="solo" aria-pressed="false"><span>01</span> Solo</button>
           <button class="mode-option is-selected" type="button" data-mode-option="duo" aria-pressed="true"><span>02</span> Duo</button>
-        </div>
+        </nav>
+        <p class="install-hint">Ajoute le site à ton écran d’accueil pour jouer comme dans une app, même hors ligne.</p>
         <div class="catalog-heading">
           <div><h2 id="catalog-title">Jeux en duo</h2><p id="mode-description">Jouez à deux sur le même écran.</p></div>
           <span>LE CATALOGUE</span>
@@ -100,9 +100,24 @@
             </div>
           </a>
 
+          <a class="game-card featured-card" href="./games/solitaire/" data-game-mode="solo" data-available="true">
+            <div class="featured-art solitaire-featured-art" aria-hidden="true">
+              <span class="art-stamp">04</span>
+              <div class="solitaire-mini">
+                <span>Q<span>♥</span></span><span>K<span>♣</span></span><span>A<span>♠</span></span>
+              </div>
+              <span class="art-caption">RANGE LES CARTES</span>
+            </div>
+            <div class="card-copy">
+              <div class="card-title-row"><h3>Solitaire</h3><span class="play-arrow" aria-hidden="true">↗</span></div>
+              <p>Alterne les couleurs et complète les quatre fondations.</p>
+              <div class="card-meta"><span>1 JOUEUR</span><span>~ 10 MIN</span><strong>JOUER <b aria-hidden="true">→</b></strong></div>
+            </div>
+          </a>
+
           <a class="game-card featured-card" href="./games/snake/" data-game-mode="solo" data-available="true">
             <div class="featured-art snake-featured-art" aria-hidden="true">
-              <span class="art-stamp">04</span>
+              <span class="art-stamp">05</span>
               <div class="snake-mini"><i></i><i></i><i></i><i></i><i></i></div>
               <span class="snake-mini-food"></span>
               <span class="art-caption">GARDE LE CAP</span>
@@ -116,7 +131,7 @@
 
           <a class="game-card featured-card" href="./games/2048/" data-game-mode="solo" data-available="true">
             <div class="featured-art tiles-featured-art" aria-hidden="true">
-              <span class="art-stamp">05</span>
+              <span class="art-stamp">06</span>
               <div class="tiles-mini"><span>2</span><span>4</span><span>8</span><span>16</span></div>
               <span class="art-caption">FUSIONNE LES TUILES</span>
             </div>
@@ -141,7 +156,7 @@
         </div>
       </section>
 
-      <footer class="hub-footer"><span>FAIT POUR LES PETITES PAUSES</span><span>01 <i>/</i> 05 <b>JEUX</b></span></footer>
+      <footer class="hub-footer"><span>FAIT POUR LES PETITES PAUSES</span><span>01 <i>/</i> 06 <b>JEUX</b></span></footer>
     </main>
   </body>
 </html>

@@ -315,6 +315,37 @@ a { color: inherit; }
 
 .tiles-featured-art { background: #b78539; }
 
+.solitaire-featured-art { background: #285344; }
+
+.solitaire-mini {
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transform: rotate(-8deg);
+}
+
+.solitaire-mini > span {
+  display: grid;
+  width: 68px;
+  height: 92px;
+  place-content: start;
+  gap: 1px;
+  margin-left: -15px;
+  padding: 8px;
+  border: 1px solid #183b3540;
+  border-radius: 7px;
+  background: #f9faf4;
+  box-shadow: 0 8px 15px #10291f44;
+  color: #183b35;
+  font: 700 20px var(--mono);
+}
+
+.solitaire-mini > span:first-child { margin-left: 0; color: #e46950; }
+.solitaire-mini > span:nth-child(2) { color: #183b35; }
+.solitaire-mini > span:last-child { color: #5368d8; }
+.solitaire-mini > span span { font-size: 16px; }
+
 .tiles-mini {
   z-index: 1;
   display: grid;

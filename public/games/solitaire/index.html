@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <meta name="theme-color" content="#111a18">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link rel="manifest" href="../../manifest.webmanifest">
+    <link rel="icon" href="../../assets/icons/icon.svg" type="image/svg+xml">
+    <link rel="apple-touch-icon" href="../../assets/icons/icon-192.png">
+    <title>Solitaire · Jeux de poche</title>
+    <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="../../assets/css/mobile.css">
+    <script src="./game.js" defer></script>
+    <script src="../../assets/js/pwa.js" defer></script>
+  </head>
+  <body>
+    <main class="game-shell solitaire-shell">
+      <header class="topbar">
+        <a class="wordmark" href="../../" aria-label="Retour au menu des jeux">
+          <span class="wordmark-mark" aria-hidden="true">←</span>
+          <span>MENU <i>· TOUS LES JEUX</i></span>
+        </a>
+        <span class="edition">LE CLASSIQUE · 06</span>
+      </header>
+
+      <section class="game solitaire-game" aria-labelledby="game-title">
+        <div class="intro">
+          <p class="eyebrow"><span></span> SOLO · CARTES</p>
+          <h1 id="game-title">Solitaire.</h1>
+          <p class="subtitle">Range les cartes de l’as au roi, en alternant les couleurs.</p>
+          <p class="keyboard-hint">TOUCHE UNE CARTE, PUIS SA DESTINATION</p>
+        </div>
+
+        <div class="game-panel solitaire-panel">
+          <div class="game-header">
+            <div>
+              <p class="turn-label">TABLE DE JEU</p>
+              <h2>Klondike</h2>
+            </div>
+            <div class="solitaire-actions">
+              <button class="secondary-button" id="undo-move" type="button" aria-label="Annuler le dernier coup" disabled>Annuler</button>
+              <button class="secondary-button" id="hint-move" type="button">Indice</button>
+              <button class="secondary-button" id="new-game" type="button">Nouvelle partie</button>
+            </div>
+          </div>
+
+          <div class="solitaire-stats" aria-label="Statistiques de la partie">
+            <div class="stat-box"><span>Coups</span><strong id="move-count">0</strong></div>
+            <div class="stat-box"><span>Temps</span><strong id="timer">00:00</strong></div>
+            <div class="stat-box"><span>Record</span><strong id="best-score">—</strong></div>
+          </div>
+
+          <div class="solitaire-board" id="solitaire-board" aria-label="Plateau de Solitaire">
+            <div class="card-row" aria-label="Pioche et fondations">
+              <div class="card-pile stock-pile">
+                <span class="pile-label">PIOCHE</span>
+                <button class="card-slot" id="stock" type="button" aria-label="Piocher une carte"></button>
+              </div>
+              <div class="card-pile waste-pile">
+                <span class="pile-label">DÉFAUSSE</span>
+                <div class="card-slot" id="waste"></div>
+              </div>
+              <div class="pile-spacer" aria-hidden="true"></div>
+              <div class="card-pile foundation-pile" data-foundation="0">
+                <span class="pile-label">CŒUR</span>
+                <button class="card-slot" type="button" aria-label="Fondation cœur, vide" data-foundation-target="0"></button>
+              </div>
+              <div class="card-pile foundation-pile" data-foundation="1">
+                <span class="pile-label">CARREAU</span>
+                <button class="card-slot" type="button" aria-label="Fondation carreau, vide" data-foundation-target="1"></button>
+              </div>
+              <div class="card-pile foundation-pile" data-foundation="2">
+                <span class="pile-label">TRÈFLE</span>
+                <button class="card-slot" type="button" aria-label="Fondation trèfle, vide" data-foundation-target="2"></button>
+              </div>
+              <div class="card-pile foundation-pile" data-foundation="3">
+                <span class="pile-label">PIQUE</span>
+                <button class="card-slot" type="button" aria-label="Fondation pique, vide" data-foundation-target="3"></button>
+              </div>
+            </div>
+
+            <div class="tableau" id="tableau" aria-label="Sept colonnes de jeu"></div>
+          </div>
+
+          <p class="game-status" id="game-status" aria-live="polite">Touche la pioche pour commencer.</p>
+        </div>
+      </section>
+
+      <footer class="footer">
+        <span>FAIT POUR LES PETITES PAUSES</span>
+        <span>06 <i>/</i> 06 <b>JEUX</b></span>
+      </footer>
+    </main>
+  </body>
+</html>

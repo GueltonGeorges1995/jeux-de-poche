@@ -4,7 +4,7 @@ Petite arcade de jeux solo et de jeux à deux sur un même écran. Les jeux et l
 
 ## Jeux
 
-- **Solo** : Memory, Snake et 2048.
+- **Solo** : Memory, Solitaire, Snake et 2048.
 - **Duo sur un écran** : Tic-tac-toe et Puissance 4.
 
 Les meilleurs scores et les résultats des parties à deux sont enregistrés dans le stockage local du navigateur. Ils restent propres à cet appareil et à ce navigateur.

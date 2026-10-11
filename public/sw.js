@@ -1,4 +1,4 @@
-const CACHE_NAME = 'jeux-de-poche-v1';
+const CACHE_NAME = 'jeux-de-poche-v2';
 const APP_FILES = [
   './index.html',
   './manifest.webmanifest',
@@ -22,6 +22,10 @@ const APP_FILES = [
   './games/2048/index.html',
   './games/2048/style.css',
   './games/2048/game.js',
+  './games/solitaire/',
+  './games/solitaire/index.html',
+  './games/solitaire/style.css',
+  './games/solitaire/game.js',
   './games/tic-tac-toe/',
   './games/tic-tac-toe/index.html',
   './games/tic-tac-toe/style.css',

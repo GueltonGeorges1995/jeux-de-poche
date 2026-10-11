@@ -60,6 +60,11 @@ input:focus-visible {
   -webkit-tap-highlight-color: transparent;
 }
 
+.mode-switch button {
+  min-height: 44px;
+  touch-action: manipulation;
+}
+
 .memory-card,
 .cell,
 .connect-four-cell {
@@ -72,16 +77,27 @@ input:focus-visible {
   }
 
   .hub-header {
-    gap: 10px;
+    height: auto;
+    min-height: 64px;
+    flex-wrap: wrap;
+    gap: 6px 10px;
+    padding-block: 8px;
   }
 
   .hub-brand {
+    flex: 1 1 auto;
     min-height: 48px;
   }
 
   .header-note {
+    order: 2;
     margin-left: auto;
     text-align: right;
+  }
+
+  .hub-header .install-button {
+    order: 3;
+    margin-left: auto;
   }
 
   .hub-intro {
@@ -90,6 +106,15 @@ input:focus-visible {
 
   .mode-option {
     min-height: 48px;
+  }
+
+  .mode-switch {
+    position: sticky;
+    top: 0;
+    z-index: 15;
+    padding-block: 6px;
+    background: #edf2e6ed;
+    backdrop-filter: blur(12px);
   }
 
   .game-shell {
@@ -101,8 +126,16 @@ input:focus-visible {
   }
 
   .topbar {
+    position: sticky;
+    top: 0;
+    z-index: 20;
     min-height: 48px;
     gap: 10px;
+    margin-inline: -8px;
+    padding: 4px 8px;
+    border-bottom: 1px solid #34413b99;
+    background: #111a18eF;
+    backdrop-filter: blur(14px);
   }
 
   .wordmark {
@@ -247,6 +280,10 @@ input:focus-visible {
   .hub-brand {
     gap: 8px;
     font-size: 10px;
+  }
+
+  .hub-header .install-button {
+    width: 100%;
   }
 
   .hub-brand-mark {
