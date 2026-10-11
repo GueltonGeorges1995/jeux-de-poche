@@ -331,6 +331,59 @@ a:focus-visible { outline: 3px solid var(--lime); outline-offset: 3px; }
   .solitaire-actions .secondary-button { font-size: 9px; }
 }
 
+@media (orientation: landscape) and (max-height: 520px) {
+  .solitaire-shell.game-shell {
+    min-height: 100svh;
+    padding: max(4px, env(safe-area-inset-top)) max(12px, env(safe-area-inset-right))
+      max(4px, env(safe-area-inset-bottom)) max(12px, env(safe-area-inset-left));
+  }
+
+  .solitaire-shell .topbar,
+  .solitaire-shell .wordmark { min-height: 36px; }
+  .solitaire-shell .topbar { padding-block: 0; }
+  .wordmark-mark { width: 28px; height: 28px; flex-basis: 28px; }
+
+  .solitaire-shell .solitaire-game {
+    width: min(100%, 1100px);
+    flex: 0 1 auto;
+    align-content: start;
+    gap: 6px;
+    margin: 0 auto;
+  }
+
+  .solitaire-game .intro {
+    display: flex;
+    min-height: 20px;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+  }
+  .solitaire-game .eyebrow { font-size: 8px; }
+  .solitaire-game .intro h1 { margin: 0; font-size: 20px; }
+  .solitaire-game .subtitle,
+  .solitaire-game .keyboard-hint { display: none; }
+  .solitaire-shell .solitaire-panel { padding: 4px 8px; }
+  .solitaire-panel .game-header { margin-bottom: 6px; }
+  .game-header h2 { margin-top: 2px; font-size: 16px; }
+  .solitaire-actions { width: auto; display: flex; gap: 4px; }
+  .solitaire-actions .secondary-button {
+    min-height: 34px;
+    padding: 4px 8px;
+    font-size: 10px;
+  }
+
+  .solitaire-stats { gap: 5px; margin-bottom: 6px; }
+  .solitaire-stats .stat-box { min-height: 32px; padding: 3px; }
+  .solitaire-stats .stat-box strong { font-size: 13px; }
+  .solitaire-board { max-width: 900px; }
+  .solitaire-board .card-slot,
+  .solitaire-board .playing-card { max-width: min(100%, 12vh); }
+  .card-row { margin-bottom: 4px; }
+  .pile-label { min-height: 12px; font-size: 7px; }
+  .game-status { min-height: 18px; margin-top: 6px; font-size: 11px; }
+  .solitaire-shell > .footer { display: none; }
+}
+
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
 }

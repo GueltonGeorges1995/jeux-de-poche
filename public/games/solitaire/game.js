@@ -182,7 +182,11 @@ function render() {
     stack.className = 'tableau-column';
     stack.dataset.tableauTarget = String(pileIndex);
     stack.setAttribute('aria-label', `Colonne ${pileIndex + 1}`);
-    const width = Math.min(72, Math.max(30, (boardElement.clientWidth - (columnCount - 1) * 5) / columnCount));
+    const availableWidth = (boardElement.clientWidth - (columnCount - 1) * 5) / columnCount;
+    const landscapeCardWidth = window.matchMedia('(orientation: landscape) and (max-height: 520px)').matches
+      ? window.innerHeight * 0.12
+      : Infinity;
+    const width = Math.min(72, Math.max(30, Math.min(availableWidth, landscapeCardWidth)));
     const hiddenOffset = Math.max(13, Math.round(width * 0.23));
     const faceUpOffset = Math.max(22, Math.round(width * 0.38));
     stack.style.minHeight = `${Math.max(width * 1.4, width * 1.4 + column.slice(0, -1).reduce((height, card) => height + (card.faceUp ? faceUpOffset : hiddenOffset), 0))}px`;
