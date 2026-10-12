@@ -1,4 +1,4 @@
-const CACHE_NAME = 'jeux-de-poche-v2';
+const CACHE_NAME = 'jeux-de-poche-v3';
 const APP_FILES = [
   './index.html',
   './manifest.webmanifest',
@@ -35,6 +35,10 @@ const APP_FILES = [
   './games/connect-four/index.html',
   './games/connect-four/style.css',
   './games/connect-four/game.js',
+  './games/pong/',
+  './games/pong/index.html',
+  './games/pong/style.css',
+  './games/pong/game.js',
 ];
 
 self.addEventListener('install', (event) => {

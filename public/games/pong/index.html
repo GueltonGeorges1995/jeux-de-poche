@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <meta name="theme-color" content="#111a18">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link rel="manifest" href="../../manifest.webmanifest">
+    <link rel="icon" href="../../assets/icons/icon.svg" type="image/svg+xml">
+    <link rel="apple-touch-icon" href="../../assets/icons/icon-192.png">
+    <title>Pong · Jeux de poche</title>
+    <link rel="stylesheet" href="../connect-four/style.css">
+    <link rel="stylesheet" href="../tic-tac-toe/local.css">
+    <link rel="stylesheet" href="../../assets/css/mobile.css">
+    <link rel="stylesheet" href="./style.css">
+    <script src="../../assets/js/local-stats.js" defer></script>
+    <script src="./game.js" defer></script>
+    <script src="../../assets/js/pwa.js" defer></script>
+  </head>
+  <body>
+    <main class="game-shell pong-shell">
+      <header class="topbar">
+        <a class="wordmark" href="../../" aria-label="Retour au menu des jeux">
+          <span class="wordmark-mark" aria-hidden="true">←</span>
+          <span>MENU <i>· TOUS LES JEUX</i></span>
+        </a>
+        <span class="edition">LE CLASSIQUE · 07</span>
+      </header>
+
+      <section class="game pong-game" aria-labelledby="game-title">
+        <div class="intro">
+          <p class="eyebrow"><span></span> DUO · UN ÉCRAN</p>
+          <h1 id="game-title">Pong<em>.</em></h1>
+          <p class="subtitle">Deux raquettes, une balle. Premier à 5 points.</p>
+        </div>
+
+        <div class="game-panel pong-panel">
+          <section class="local-setup-panel" id="local-setup-panel" aria-label="Noms des joueurs">
+            <p class="turn-label">DUO · UN ÉCRAN</p>
+            <h2>Qui joue&nbsp;?</h2>
+            <label class="field-label" for="local-player-x">JOUEUR GAUCHE</label>
+            <input class="lobby-input" id="local-player-x" maxlength="18" autocomplete="off" value="Joueur 1">
+            <label class="field-label" for="local-player-o">JOUEUR DROIT</label>
+            <input class="lobby-input" id="local-player-o" maxlength="18" autocomplete="off" value="Joueur 2">
+            <button class="primary-action" id="start-local-game" type="button">Commencer la partie <span aria-hidden="true">→</span></button>
+          </section>
+
+          <section class="gameplay-panel pong-play" id="gameplay-panel" hidden aria-label="Partie de Pong">
+            <div class="pong-scoreboard" aria-label="Score">
+              <div class="pong-score is-left"><span id="name-x">JOUEUR 1</span><strong id="score-x">0</strong></div>
+              <p class="game-status" id="game-status" aria-live="polite">La partie commence</p>
+              <div class="pong-score is-right"><strong id="score-o">0</strong><span id="name-o">JOUEUR 2</span></div>
+            </div>
+
+            <canvas class="pong-canvas" id="pong-canvas" width="960" height="540" aria-label="Terrain de Pong. Joueur gauche : W et S. Joueur droit : flèches haut et bas.">
+              Le terrain de Pong nécessite un navigateur compatible avec Canvas.
+            </canvas>
+
+            <div class="pong-controls" aria-label="Commandes tactiles">
+              <div class="pong-control-player">
+                <span id="control-name-x">Joueur 1</span>
+                <button type="button" data-player="X" data-direction="-1" aria-label="Joueur gauche, monter">▲</button>
+                <button type="button" data-player="X" data-direction="1" aria-label="Joueur gauche, descendre">▼</button>
+              </div>
+              <div class="pong-control-player is-right">
+                <span id="control-name-o">Joueur 2</span>
+                <button type="button" data-player="O" data-direction="-1" aria-label="Joueur droit, monter">▲</button>
+                <button type="button" data-player="O" data-direction="1" aria-label="Joueur droit, descendre">▼</button>
+              </div>
+            </div>
+            <p class="pong-hint">Ordinateur : <kbd>W</kbd> <kbd>S</kbd> et <kbd>↑</kbd> <kbd>↓</kbd> · Mobile : maintiens les flèches.</p>
+            <button class="reset-button" id="new-round" type="button" hidden>Nouvelle partie</button>
+            <button class="back-button" id="change-players" type="button">← Changer les joueurs</button>
+          </section>
+
+          <section class="game-record" aria-labelledby="record-title">
+            <div class="record-heading"><h2 id="record-title">Scores et parties</h2><span>ENREGISTRÉS SUR CET APPAREIL</span></div>
+            <div class="record-totals"><p>PARTIES TERMINÉES <strong id="games-completed">0</strong></p><p>ÉGALITÉS <strong id="draw-count">0</strong></p></div>
+            <ol class="match-leaderboard" id="match-leaderboard"><li>Les résultats apparaîtront après la première partie.</li></ol>
+          </section>
+        </div>
+      </section>
+
+      <footer class="footer">
+        <span>FAIT POUR LES PETITES PAUSES</span>
+        <span>03 <i>/</i> 07 <b>JEUX</b></span>
+      </footer>
+    </main>
+  </body>
+</html>

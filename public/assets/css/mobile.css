@@ -71,6 +71,54 @@ input:focus-visible {
   touch-action: manipulation;
 }
 
+@media (min-width: 901px) and (min-height: 521px) {
+  .game-shell > .game {
+    width: min(100%, 1200px);
+    grid-template-columns: minmax(0, 1fr);
+    justify-items: center;
+    gap: 12px;
+    margin-block: 16px;
+  }
+
+  .game-shell > .game > .intro {
+    display: flex;
+    width: min(100%, 1100px);
+    flex-wrap: wrap;
+    align-items: baseline;
+    justify-content: center;
+    gap: 4px 18px;
+    text-align: center;
+  }
+
+  .game-shell > .game > .intro h1 {
+    margin: 0;
+    font-size: clamp(24px, 2.5vw, 34px);
+    line-height: 1.15;
+    white-space: nowrap;
+  }
+
+  .game-shell > .game > .intro .subtitle {
+    margin: 0;
+    font-size: 13px;
+  }
+
+  .game-shell > .game > .intro .keyboard-hint {
+    flex-basis: 100%;
+    margin: 2px 0 0;
+    text-align: center;
+  }
+
+  .game-shell > .game > .game-panel {
+    width: min(100%, 560px);
+    max-width: 100%;
+    justify-self: center;
+  }
+
+  .game-shell > .solitaire-game > .solitaire-panel {
+    width: min(100%, 820px);
+  }
+}
+
 @media (max-width: 760px) {
   .hub-shell {
     width: min(100% - 32px, 560px);

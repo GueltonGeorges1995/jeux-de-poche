@@ -5,13 +5,13 @@ Petite arcade de jeux solo et de jeux à deux sur un même écran. Les jeux et l
 ## Jeux
 
 - **Solo** : Memory, Solitaire, Snake et 2048.
-- **Duo sur un écran** : Tic-tac-toe et Puissance 4.
+- **Duo sur un écran** : Tic-tac-toe, Puissance 4 et Pong.
 
 Les meilleurs scores et les résultats des parties à deux sont enregistrés dans le stockage local du navigateur. Ils restent propres à cet appareil et à ce navigateur.
 
 ## Utilisation sur téléphone et installation
 
-L'interface s'adapte aux écrans tactiles et aux zones de sécurité des téléphones et tablettes. Snake et 2048 se jouent par balayage ; les boutons de direction et les plateaux sont adaptés au toucher.
+L'interface s'adapte aux écrans tactiles et aux zones de sécurité des téléphones et tablettes. Snake et 2048 se jouent par balayage ; les boutons de direction et les plateaux sont adaptés au toucher. Pong se joue au clavier sur ordinateur et avec les commandes tactiles des deux côtés de l'écran.
 
 Le site est une Progressive Web App : depuis un navigateur compatible, choisis **Installer l'app** ou **Ajouter à l'écran d'accueil**. Sur iPhone et iPad, ouvre le menu **Partager**, puis **Sur l'écran d'accueil**. Après le premier chargement, les jeux restent disponibles hors ligne.
 

@@ -124,7 +124,7 @@ h1 {
   margin-bottom: 14px;
 }
 
-.game-header h2 { margin: 6px 0 0; font-size: 25px; }
+.solitaire-panel .game-header { justify-content: flex-end; }
 .solitaire-actions { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: 6px; }
 
 .secondary-button {
@@ -400,7 +400,6 @@ a:focus-visible { outline: 3px solid var(--lime); outline-offset: 3px; }
   .solitaire-game .keyboard-hint { display: none; }
   .solitaire-shell .solitaire-panel { padding: 4px 8px; }
   .solitaire-panel .game-header { margin-bottom: 6px; }
-  .game-header h2 { margin-top: 2px; font-size: 16px; }
   .solitaire-actions { width: auto; display: flex; gap: 4px; }
   .solitaire-actions .secondary-button {
     min-height: 34px;
