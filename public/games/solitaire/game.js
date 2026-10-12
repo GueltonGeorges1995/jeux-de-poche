@@ -28,6 +28,9 @@ let timerId = null;
 let gameWon = false;
 let hintedCards = [];
 let hintedTarget = null;
+let activeDrag = null;
+let dragPreview = null;
+let suppressBoardClick = false;
 
 function shuffle(cards) {
   for (let index = cards.length - 1; index > 0; index -= 1) {
@@ -151,6 +154,170 @@ function drawPileCard(target, card, source, { selectedCard = false, hinted = fal
   target.append(createCardElement(card, { selectedCard, hinted, source, interactive }));
 }
 
+function sourceFromElement(element) {
+  if (element.dataset.sourceType) {
+    return {
+      type: element.dataset.sourceType,
+      pile: Number(element.dataset.sourcePile),
+      index: Number(element.dataset.sourceIndex),
+    };
+  }
+  if (element.hasAttribute('data-foundation-target')) {
+    const pile = Number(element.dataset.foundationTarget);
+    return { type: 'foundation', pile, index: foundations[pile].length - 1 };
+  }
+  return null;
+}
+
+function cardElementsForSource(source) {
+  if (source.type === 'tableau') {
+    return [...tableauElement.querySelectorAll(
+      `[data-source-type="tableau"][data-source-pile="${source.pile}"]`,
+    )].filter((card) => Number(card.dataset.sourceIndex) >= source.index);
+  }
+  const selector = source.type === 'foundation'
+    ? `[data-foundation-target="${source.pile}"]`
+    : '[data-source-type="waste"]';
+  const card = boardElement.querySelector(selector);
+  return card ? [card] : [];
+}
+
+function clearDragPreview(drag = activeDrag) {
+  drag?.cards.forEach((card) => card.classList.remove('is-dragging'));
+  boardElement.querySelectorAll('.is-drop-target').forEach((target) => target.classList.remove('is-drop-target'));
+  dragPreview?.remove();
+  dragPreview = null;
+}
+
+function positionDragPreview(x, y) {
+  if (!activeDrag || !dragPreview) return;
+  dragPreview.style.left = `${x - activeDrag.grabX}px`;
+  dragPreview.style.top = `${y - activeDrag.grabY}px`;
+}
+
+function startDragPreview() {
+  if (!activeDrag || dragPreview) return;
+  const firstCard = activeDrag.cards[0];
+  const firstRect = firstCard.getBoundingClientRect();
+  dragPreview = document.createElement('div');
+  dragPreview.className = 'solitaire-drag-preview';
+  dragPreview.setAttribute('aria-hidden', 'true');
+  dragPreview.style.width = `${firstRect.width}px`;
+
+  activeDrag.cards.forEach((card, index) => {
+    const rect = card.getBoundingClientRect();
+    const clone = card.cloneNode(true);
+    clone.classList.remove('is-selected', 'is-dragging');
+    clone.removeAttribute('data-source-type');
+    clone.removeAttribute('data-source-pile');
+    clone.removeAttribute('data-source-index');
+    clone.tabIndex = -1;
+    clone.disabled = true;
+    clone.style.left = '0';
+    clone.style.top = `${rect.top - firstRect.top}px`;
+    clone.style.width = `${rect.width}px`;
+    clone.style.height = `${rect.height}px`;
+    clone.style.zIndex = String(index + 1);
+    dragPreview.append(clone);
+    card.classList.add('is-dragging');
+  });
+
+  document.body.append(dragPreview);
+  positionDragPreview(activeDrag.lastX, activeDrag.lastY);
+}
+
+function updateDragTarget(x, y) {
+  boardElement.querySelectorAll('.is-drop-target').forEach((target) => target.classList.remove('is-drop-target'));
+  const target = document.elementFromPoint(x, y);
+  const foundationTarget = target?.closest('[data-foundation-target]');
+  const tableauTarget = target?.closest('[data-tableau-target]');
+  if (foundationTarget && activeDrag.source.type !== 'foundation') {
+    const pileIndex = Number(foundationTarget.dataset.foundationTarget);
+    const card = topCard(activeDrag.source);
+    const foundation = foundations[pileIndex];
+    const valid = card && !(activeDrag.source.type === 'tableau'
+      && activeDrag.source.index !== tableau[activeDrag.source.pile].length - 1)
+      && (foundation.length
+        ? foundation[0].suit === card.suit && foundation.at(-1).rank + 1 === card.rank
+        : card.rank === 0 && card.suit === pileIndex);
+    if (valid) foundationTarget.classList.add('is-drop-target');
+    return;
+  }
+  if (tableauTarget) {
+    const pileIndex = Number(tableauTarget.dataset.tableauTarget);
+    const cards = activeDrag.source.type === 'tableau'
+      ? tableau[activeDrag.source.pile].slice(activeDrag.source.index)
+      : [topCard(activeDrag.source)];
+    if (canPlaceOnTableau(cards, pileIndex)) tableauTarget.classList.add('is-drop-target');
+  }
+}
+
+function handlePointerDown(event) {
+  if (!event.isPrimary || (event.pointerType === 'mouse' && event.button !== 0)) return;
+  const sourceElement = event.target.closest('[data-source-type], [data-foundation-target]');
+  if (!sourceElement || sourceElement.disabled) return;
+  const source = sourceFromElement(sourceElement);
+  if (!source || !topCard(source) || gameWon) return;
+  const cards = cardElementsForSource(source);
+  if (!cards.length) return;
+  const rect = sourceElement.getBoundingClientRect();
+
+  activeDrag = {
+    pointerId: event.pointerId,
+    source,
+    cards,
+    startX: event.clientX,
+    startY: event.clientY,
+    lastX: event.clientX,
+    lastY: event.clientY,
+    grabX: event.clientX - rect.left,
+    grabY: event.clientY - rect.top,
+    moved: false,
+  };
+}
+
+function handlePointerMove(event) {
+  if (!activeDrag || event.pointerId !== activeDrag.pointerId) return;
+  activeDrag.lastX = event.clientX;
+  activeDrag.lastY = event.clientY;
+  if (!activeDrag.moved && Math.hypot(event.clientX - activeDrag.startX, event.clientY - activeDrag.startY) < 8) return;
+  activeDrag.moved = true;
+  event.preventDefault();
+  startDragPreview();
+  positionDragPreview(event.clientX, event.clientY);
+  updateDragTarget(event.clientX, event.clientY);
+}
+
+function handlePointerUp(event) {
+  if (!activeDrag || event.pointerId !== activeDrag.pointerId) return;
+  const drag = activeDrag;
+  clearDragPreview(drag);
+  activeDrag = null;
+  if (!drag.moved) return;
+
+  suppressBoardClick = true;
+  window.setTimeout(() => { suppressBoardClick = false; }, 0);
+  const target = document.elementFromPoint(event.clientX, event.clientY);
+  const foundationTarget = target?.closest('[data-foundation-target]');
+  const tableauTarget = target?.closest('[data-tableau-target]');
+  selected = drag.source;
+  clearHint();
+  if (foundationTarget && drag.source.type !== 'foundation') {
+    moveToFoundation(Number(foundationTarget.dataset.foundationTarget));
+  } else if (tableauTarget) {
+    moveToTableau(Number(tableauTarget.dataset.tableauTarget));
+  } else {
+    showStatus('Carte sélectionnée : glisse-la vers une destination valide, ou touche celle-ci.');
+  }
+  if (selected) render();
+}
+
+function handlePointerCancel(event) {
+  if (!activeDrag || event.pointerId !== activeDrag.pointerId) return;
+  clearDragPreview(activeDrag);
+  activeDrag = null;
+}
+
 function render() {
   const stockTop = stock.at(-1);
   stockButton.classList.toggle('has-stock', stock.length > 0);
@@ -172,6 +339,15 @@ function render() {
       interactive: false,
     });
     button.dataset.foundationTarget = String(index);
+    if (card) {
+      button.dataset.sourceType = 'foundation';
+      button.dataset.sourcePile = String(index);
+      button.dataset.sourceIndex = String(foundations[index].length - 1);
+    } else {
+      delete button.dataset.sourceType;
+      delete button.dataset.sourcePile;
+      delete button.dataset.sourceIndex;
+    }
     button.setAttribute('aria-label', card ? `Fondation ${suitNames[index]} : ${cardName(card)}` : `Fondation ${suitNames[index]}, vide`);
     button.disabled = gameWon;
   });
@@ -452,7 +628,7 @@ function handleCardSelection(button) {
           render();
           return;
         }
-        showStatus(`Carte sélectionnée : ${cardName(card)}. Touche sa destination.`);
+        showStatus(`Carte sélectionnée : ${cardName(card)}. Glisse-la vers sa destination, ou touche celle-ci.`);
         render();
       }
       return;
@@ -460,7 +636,7 @@ function handleCardSelection(button) {
     if (source.type === 'waste' || source.type === 'foundation') {
       selected = source;
       clearHint();
-      showStatus(`Carte sélectionnée : ${cardName(topCard(source))}. Touche sa destination.`);
+      showStatus(`Carte sélectionnée : ${cardName(topCard(source))}. Glisse-la vers sa destination, ou touche celle-ci.`);
       render();
       return;
     }
@@ -478,11 +654,21 @@ function handleCardSelection(button) {
 
   selected = source;
   clearHint();
-  showStatus(`Carte sélectionnée : ${cardName(topCard(source))}. Touche sa destination.`);
+  showStatus(`Carte sélectionnée : ${cardName(topCard(source))}. Glisse-la vers sa destination, ou touche celle-ci.`);
   render();
 }
 
+boardElement.addEventListener('pointerdown', handlePointerDown);
+window.addEventListener('pointermove', handlePointerMove);
+window.addEventListener('pointerup', handlePointerUp);
+window.addEventListener('pointercancel', handlePointerCancel);
+
 boardElement.addEventListener('click', (event) => {
+  if (suppressBoardClick) {
+    event.preventDefault();
+    event.stopPropagation();
+    return;
+  }
   const sourceButton = event.target.closest('[data-source-type]');
   if (sourceButton) {
     handleCardSelection(sourceButton);
@@ -497,7 +683,7 @@ boardElement.addEventListener('click', (event) => {
     } else if (foundations[pile].length) {
       selected = { type: 'foundation', pile, index: foundations[pile].length - 1 };
       const card = topCard(selected);
-      showStatus(`Carte sélectionnée : ${cardName(card)}. Touche une colonne ou sa fondation.`);
+      showStatus(`Carte sélectionnée : ${cardName(card)}. Glisse-la vers une colonne, ou touche celle-ci.`);
       render();
     }
     return;

@@ -211,8 +211,17 @@ h1 {
   -webkit-tap-highlight-color: transparent;
 }
 
-button.card-slot,
-button.playing-card { cursor: pointer; }
+button.card-slot { cursor: pointer; }
+button.playing-card,
+button.card-slot[data-source-type="foundation"] { cursor: grab; }
+button.playing-card,
+button.card-slot[data-source-type="foundation"] {
+  touch-action: none;
+  user-select: none;
+  -webkit-user-select: none;
+}
+button.playing-card:active,
+button.card-slot[data-source-type="foundation"]:active { cursor: grabbing; }
 button.card-slot:focus-visible,
 button.playing-card:focus-visible { z-index: 3; outline: 3px solid var(--lime); outline-offset: 2px; }
 
@@ -272,6 +281,33 @@ button.playing-card:focus-visible { z-index: 3; outline: 3px solid var(--lime); 
   outline: 3px solid var(--lime);
   outline-offset: 1px;
   transform: translateY(-3px);
+}
+
+.playing-card.is-dragging,
+.card-slot.is-dragging { opacity: 0.35; }
+
+.solitaire-drag-preview {
+  position: fixed;
+  z-index: 1000;
+  pointer-events: none;
+  filter: drop-shadow(0 12px 12px #0008);
+}
+
+.solitaire-drag-preview .playing-card,
+.solitaire-drag-preview .card-slot {
+  position: absolute;
+  pointer-events: none;
+}
+
+.tableau-column.is-drop-target {
+  outline: 2px solid var(--lime);
+  outline-offset: 2px;
+  border-radius: 6px;
+}
+
+.card-slot.is-drop-target {
+  border-color: var(--lime);
+  box-shadow: 0 0 0 3px #d7f36a88;
 }
 
 .playing-card.is-hinted,
